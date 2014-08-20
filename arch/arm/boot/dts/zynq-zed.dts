@@ -33,6 +33,12 @@
 &gem0 {
 	status = "okay";
 	phy-mode = "rgmii-id";
+	phy-handle = <&ethernet_phy>;
+
+	ethernet_phy: ethernet-phy@0 {
+		compatible = "marvell,88e1518", "ethernet-phy-ieee802.3-c22";
+		reg = <0>;
+	};
 };
 
 &sdhci0 {
