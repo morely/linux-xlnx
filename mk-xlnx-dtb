@@ -1,0 +1,2 @@
+time make O=mys-xc7z010 ARCH=arm mys-xc7z010.dtb
+cp mys-xc7z010/arch/arm/boot/dts/mys-xc7z010.dtb ~/share/tftp/xlnx/
