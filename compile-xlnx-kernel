@@ -1,0 +1,2 @@
+time make -j8 ARCH=arm O=mys-xc7z010 UIMAGE_LOADADDR=0x8000 uImage
+cp mys-xc7z010/arch/arm/boot/uImage ~/share/tftp/xlnx/
