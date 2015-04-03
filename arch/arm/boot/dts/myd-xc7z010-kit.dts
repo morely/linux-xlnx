@@ -1,0 +1,197 @@
+/*
+ *  Copyright (C) 2011 - 2014 Xilinx
+ *  Copyright (C) 2012 National Instruments Corp.
+ *
+ * This software is licensed under the terms of the GNU General Public
+ * License version 2, as published by the Free Software Foundation, and
+ * may be copied, distributed, and modified under those terms.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+/dts-v1/;
+/include/ "zynq-7000.dtsi"
+
+/ {
+	model = "ZYNQ MYD-XC7Z010 Development Board";
+	compatible = "myird,myd-xc7z010", "xlnx,zynq-7000";
+
+	aliases {
+		ethernet0 = &gem0;
+		serial0 = &uart1;
+		serial1 = &uart0;
+		spi0 = &qspi;
+	};
+
+	memory {
+		device_type = "memory";
+		reg = <0x0 0x30000000>;
+	};
+
+	chosen {
+		bootargs = "console=ttyPS0,115200 root=/dev/ram rw earlyprintk";
+		linux,stdout-path = "/amba/serial@e0001000";
+	};
+};
+
+&gpio0 {
+    emio-gpio-width = <64>;
+    gpio-mask-high = <0x0>;
+    gpio-mask-low = <0x5600>;
+    xlnx,emio-gpio-width = <0x40>;
+    xlnx,mio-gpio-mask = <0x5600>;
+};
+
+&qspi {
+ 	status = "okay";
+	is-dual = <0>;
+	num-cs = <1>;
+	xlnx,fb-clk = <0x1>;
+	xlnx,qspi-mode = <0x0>;
+	flash@0 {
+		compatible = "s25fl256s1";
+		reg = <0x0>;
+		spi-tx-bus-width = <1>;
+		spi-rx-bus-width = <4>;
+		spi-max-frequency = <50000000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		partition@qspi-fsbl-uboot {
+			label = "qspi-fsbl-uboot";
+			reg = <0x0 0x100000>;
+		};
+		partition@qspi-linux {
+			label = "qspi-linux";
+			reg = <0x100000 0x500000>;
+		};
+		partition@qspi-device-tree {
+			label = "qspi-device-tree";
+			reg = <0x600000 0x20000>;
+		};
+		partition@qspi-rootfs {
+			label = "qspi-rootfs";
+			reg = <0x620000 0x5E0000>;
+		};
+		partition@qspi-bitstream {
+			label = "qspi-bitstream";
+			reg = <0xC00000 0x400000>;
+ 		};
+	};
+};
+
+&usb0 {
+	status = "okay";
+	dr_mode = "host";
+	/*phy_type = "ulpi";*/
+};
+
+
+&gem0 {
+    compatible = "cdns,gem";
+    reg = <0xe000b000 0x4000>;
+    status = "okay";
+    interrupts = <0 22 4>;
+    interrupt-parent = <&intc>;
+    clocks = <&clkc 30>, <&clkc 30>, <&clkc 13>;
+    clock-names = "pclk", "hclk", "tx_clk";
+    phy-mode = "rgmii-id";
+    phy-handle = <&phy0>;
+    phy0: phy@0 {
+        compatible = "atheros,ar8035";
+            device_type = "ethernet-phy";
+            reg = <0>;
+    };
+};
+
+&sdhci0 {
+	status = "okay";
+    xlnx,has-cd = <0x1>;
+    xlnx,has-power = <0x0>;
+    xlnx,has-wp = <0x0>;
+};
+/*
+&sdhci1 {
+	status = "okay";
+    /*xlnx,has-cd = <0x0>;
+    xlnx,has-power = <0x0>;
+    xlnx,has-wp = <0x0>;*/
+};*/
+&uart0 {
+	status = "okay";
+    current-speed = <115200>;
+    port-number = <1>;
+    xlnx,has-modem = <0x0>; 
+};
+
+&uart1 {
+	status = "okay";
+    current-speed = <115200>;
+    port-number = <0>;
+    xlnx,has-modem = <0x0>; 
+};
+&i2c0 {
+	status  = "okay";
+    bus-id = <0x0>;
+    i2c-clk = <400000>;
+    
+    tsc2007@49 {
+            compatible = "ti,tsc2007";
+            reg = <0x49>;
+            interrupt-parent = <&intc>;
+            interrupts = <0 3f 4>;
+            gpios = <&gpio0 0 119>;
+            ti,x -plate-ohms = <180>;
+    };
+    
+    realtimer@68 {
+            compatible = "ds3231";
+            reg= <0x68>;
+    };
+
+};
+
+&i2c1 {
+	status = "okay";
+};
+
+&can0 {
+	status = "okay";
+};
+
+&ps7_axi {
+    
+     watchdog {
+        compatible = "linux,wdt-gpio";
+        gpios = <&gpio0 0 0>;
+        hw_algo = "toggle";
+        hw_margin_ms = <1600>;
+    };
+   /*
+    gpio-leds {
+          compatible = "gpio-leds";
+        user-led1 {
+            lable = "user-led1";
+               gpios = <&gpio0 0 0>;
+        } ;
+    };
+*/    
+    gpio-keys {
+        compatible = "gpio-keys";
+        #address-cells = <1>;
+        #size-cells = <0>;
+        //autorepeat;
+
+        user-key {
+            lable = "user-key1";
+            gpios = <&gpio0 47 0>;
+            debounce-interval= <50>;
+            linux,code = <108>;
+              gpio-key,wakeup;
+           // autorepeat;
+           };
+      }; 
+/* /include/ "mys-xc7z010-pl.dtsi"
+*/
+};
