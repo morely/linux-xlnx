@@ -140,8 +140,29 @@
 
 &i2c0 {
 	status = "okay";
-    bus-id = <0x0>;
-    i2c-clk = <400000>;
+//    bus-id = <0x0>;
+    clock-frequency = <400000>;
+    xlnx,has-interrupt = <0x1>;
+
+    adxl345@53 {
+        compatible = "adi,adxl34x","adxl34x";
+        reg = <0x53>;
+        interrupt-parent = <&intc>;
+        interrupts = < 0 31 4 >;
+    };
+    
+    sil9022@3b {
+        compatible = "sil902x";
+        reg = <0x3b>;
+        interrupt-parent = <&intc>;
+        interrupts = < 0 29 4 >;
+    };
+    stlm75@49 {
+        compatible = "stlm75";
+        reg = <0x49>;
+        interrupt-parent = <&intc>;
+        interrupts = < 0 32 4 >;
+    };
 };
 
 &i2c1 {
@@ -180,12 +201,13 @@
             lable = "pl-ledb";
             gpios = <&gpio0 116 0>;
         };
-    
-        pl-beep {
+    };    
+
+    gpio-beep {
+            compatible = "gpio-beeper";
             lable = "pl-beep";
             gpios = <&gpio0 117 0>;
         };
-    };
 
     gpio-keys {
         compatible = "gpio-keys";
@@ -202,5 +224,6 @@
            // autorepeat;
         };
     };
+
 /include/ "mys-xc7z010-pl.dtsi"
 };
