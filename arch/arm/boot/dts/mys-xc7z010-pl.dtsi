@@ -49,8 +49,7 @@
         logicvc_1: logicvc@43c10000 {
             compatible = "xylon,logicvc-3.02.a";
             interrupt-parent = <&intc>;
-            status = "disable";
-            interrupts = <0 29 4>;
+            interrupts = <0 30 4>;
             reg = <0x43c10000 0x10000>;
             xlnx,buffer-0-offset = <0x438>;
             xlnx,buffer-1-offset = <0x438>;
