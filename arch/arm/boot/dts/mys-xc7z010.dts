@@ -84,7 +84,7 @@
 &usb0 {
 	status = "okay";
 	dr_mode = "otg";
-	phy_type = "ulpi";
+	/*phy_type = "ulpi";*/
 };
 
 
@@ -144,6 +144,8 @@
         reg = <0x3b>;
         interrupt-parent = <&intc>;
         interrupts = < 0 29 4 >;
+        mode_str = "1920x1080";
+        bits-per-pixel = <16>;
     };
     stlm75@49 {
         compatible = "stlm75";
@@ -211,6 +213,35 @@
             gpio-key,wakeup;
            // autorepeat;
         };
+/*  Switches
+        sw1 {
+            label = "sw1";
+            gpios = <&gpio0 110 1>;
+            linux,code = <103>;
+            gpio-key,wakeup;
+            autorepeat;
+        };
+        sw2 {
+            label = "sw2";
+            gpios = <&gpio0 111 1>;
+            linux,code = <104>;
+            gpio-key,wakeup;
+            autorepeat;
+        };
+        sw3 {
+            label = "sw3";
+            gpios = <&gpio0 112 1>;
+            linux,code = <104>;
+            gpio-key,wakeup;
+            autorepeat;
+        };
+        sw4 {
+            label = "sw4";
+            gpios = <&gpio0 113 1>;
+            linux,code = <105>;
+            gpio-key,wakeup;
+            autorepeat;
+        }; */
     };
 
 /include/ "mys-xc7z010-pl.dtsi"
