@@ -109,27 +109,27 @@
 	status = "okay";
     xlnx,has-cd = <0x1>;
     xlnx,has-power = <0x0>;
-    xlnx,has-wp = <0x0>;
+    /*xlnx,has-wp = <0x0>;*/
 };
-/*
+
 &sdhci1 {
-	status = "okay";
+/*	status = "okay";
     /*xlnx,has-cd = <0x0>;
     xlnx,has-power = <0x0>;
     xlnx,has-wp = <0x0>;*/
-};*/
+};
 &uart0 {
 	status = "okay";
     current-speed = <115200>;
     port-number = <1>;
-    xlnx,has-modem = <0x0>; 
+     xlnx,has-modem = <0x0>; 
 };
 
 &uart1 {
 	status = "okay";
     current-speed = <115200>;
     port-number = <0>;
-    xlnx,has-modem = <0x0>; 
+     xlnx,has-modem = <0x0>; 
 };
 &i2c0 {
 	status  = "okay";
@@ -140,15 +140,15 @@
             compatible = "ti,tsc2007";
             reg = <0x49>;
             interrupt-parent = <&intc>;
-            interrupts = <0 3f 4>;
-            gpios = <&gpio0 0 119>;
-            ti,x -plate-ohms = <180>;
+            interrupts = <0 30 4>;
+            gpios = <&gpio0 0 54>;
+             ti,x-plate-ohms = <180>;
     };
     
     realtimer@68 {
             compatible = "ds3231";
-            reg= <0x68>;
-    };
+             reg= <0x68>;
+     }; 
 
 };
 
@@ -168,30 +168,31 @@
         hw_algo = "toggle";
         hw_margin_ms = <1600>;
     };
-   /*
+   
     gpio-leds {
           compatible = "gpio-leds";
         user-led1 {
             lable = "user-led1";
-               gpios = <&gpio0 0 0>;
-        } ;
-    };
-*/    
+                 gpios = <&gpio0 117 0>;
+         } ; 
+    }; 
+    
     gpio-keys {
         compatible = "gpio-keys";
         #address-cells = <1>;
         #size-cells = <0>;
-        //autorepeat;
+        autorepeat;
 
         user-key {
             lable = "user-key1";
-            gpios = <&gpio0 47 0>;
+            gpios = <&gpio0 112 1>;
             debounce-interval= <50>;
             linux,code = <108>;
-              gpio-key,wakeup;
-           // autorepeat;
-           };
-      }; 
+            gpio-key,wakeup;
+            autorepeat;
+            };
+      };
+  
 /* /include/ "mys-xc7z010-pl.dtsi"
 */
 };
