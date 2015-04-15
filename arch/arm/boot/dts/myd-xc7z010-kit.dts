@@ -27,7 +27,7 @@
 
 	memory {
 		device_type = "memory";
-		reg = <0x0 0x30000000>;
+		reg = <0x0 0x18000000>;
 	};
 
 	chosen {
@@ -109,7 +109,7 @@
 	status = "okay";
     xlnx,has-cd = <0x1>;
     xlnx,has-power = <0x0>;
-    /*xlnx,has-wp = <0x0>;*/
+    xlnx,has-wp = <0x0>;
 };
 
 &sdhci1 {
@@ -141,8 +141,8 @@
             reg = <0x49>;
             interrupt-parent = <&intc>;
             interrupts = <0 30 4>;
-            gpios = <&gpio0 0 54>;
-             ti,x-plate-ohms = <180>;
+            gpios = <&gpio0 55 0>;
+            ti,x-plate-ohms = <180>;
     };
     
     realtimer@68 {
@@ -166,32 +166,32 @@
         compatible = "linux,wdt-gpio";
         gpios = <&gpio0 0 0>;
         hw_algo = "toggle";
-        hw_margin_ms = <1600>;
+        hw_margin_ms = <1600>; 
     };
    
     gpio-leds {
           compatible = "gpio-leds";
         user-led1 {
             lable = "user-led1";
-                 gpios = <&gpio0 117 0>;
-         } ; 
+            gpios = <&gpio0 54 0>;
+         }; 
     }; 
     
     gpio-keys {
-        compatible = "gpio-keys";
+        compatible = "gpio-keys"; 
         #address-cells = <1>;
         #size-cells = <0>;
         autorepeat;
 
         user-key {
             lable = "user-key1";
-            gpios = <&gpio0 112 1>;
+            gpios = <&gpio0 47 0>;
             debounce-interval= <50>;
             linux,code = <108>;
             gpio-key,wakeup;
             autorepeat;
-            };
-      };
+             }; 
+      }; 
   
 /* /include/ "mys-xc7z010-pl.dtsi"
 */
