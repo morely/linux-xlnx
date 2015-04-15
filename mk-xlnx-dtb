@@ -1,3 +1,2 @@
-time make O=myd-xc7z010-2014.4 ARCH=arm myd-xc7z010-kit-2014.4.dtb
-sudo cp myd-xc7z010-2014.4/arch/arm/boot/dts/myd-xc7z010-kit-2014.4.dtb /mnt/share/devicetree.dtb
-#cp mys-xc7z010/arch/arm/boot/dts/mys-xc7z010.dtb ~/share/tftp/xlnx/
+time make O=myd-xc7z010 ARCH=arm myd-xc7z010-kit.dtb
+sudo cp myd-xc7z010/arch/arm/boot/dts/myd-xc7z010-kit.dtb /mnt/share/myd-xc7z010/devicetree.dtb
