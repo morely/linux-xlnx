@@ -139,8 +139,8 @@
         interrupts = < 0 31 4 >;
     };
     
-    sil9022@3b {
-        compatible = "sil902x";
+    sii9022@3b {
+        compatible = "sii902x";
         reg = <0x3b>;
         interrupt-parent = <&intc>;
         interrupts = < 0 29 4 >;
@@ -148,7 +148,7 @@
         bits-per-pixel = <16>;
     };
     stlm75@49 {
-        compatible = "stlm75";
+        compatible = "stlm75x";
         reg = <0x49>;
         interrupt-parent = <&intc>;
         interrupts = < 0 32 4 >;
@@ -244,5 +244,6 @@
         }; */
     };
 
+/include/ "xylon-display.dtsi"
 /include/ "mys-xc7z010-pl.dtsi"
 };
