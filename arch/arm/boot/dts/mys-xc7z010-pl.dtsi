@@ -1,4 +1,3 @@
-/include/ "xylon-display.dtsi"
 
 /*        axi_iic_0: axi-iic@41600000 {
 *            #address-cells = <1>;

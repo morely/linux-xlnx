@@ -1,6 +1,6 @@
         logiclk_0: logiclk@43c00000 {
             compatible = "xylon,logiclk-1.02.b";
-            status = "disable";
+            status = "okay";
             reg = <0x43c00000 0x10000>;
             osc-clk-freq-hz = <0x5f5e100>;
             xlnx,clk-multiply = <0x9>;
@@ -49,8 +49,8 @@
         logicvc_1: logicvc@43c10000 {
             compatible = "xylon,logicvc-3.02.a";
             interrupt-parent = <&intc>;
-            status = "disable";
-            interrupts = <0 29 4>;
+            status = "okay";
+            interrupts = <0 30 4>;
             reg = <0x43c10000 0x10000>;
             xlnx,buffer-0-offset = <0x438>;
             xlnx,buffer-1-offset = <0x438>;
@@ -131,7 +131,7 @@
             xlnx,use-background = <0x1>;
             xlnx,use-size-position = <0x1>;
             active-layer = <0x1>;
-            videomode = "1920x1080";
+            videomode = "1280x720";
             edid {
                 preffered-videomode = <0x1>;
                  display-data = <0x1>;
