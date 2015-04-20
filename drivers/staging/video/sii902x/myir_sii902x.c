@@ -474,7 +474,6 @@ static int sii902x_probe(struct i2c_client *client,
 #else
 	sii902x.edid_cfg.hdmi_cap = 1;
 #endif
-
 	if (sii902x.client->irq) {
 		ret = request_irq(sii902x.client->irq, sii902x_detect_handler,
 				/*IRQF_TRIGGER_FALLING*/IRQF_TRIGGER_RISING,
