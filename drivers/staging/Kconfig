@@ -150,6 +150,8 @@ source "drivers/staging/video/axivdma/Kconfig"
 
 source "drivers/staging/video/sii902x/Kconfig"
 
+source "drivers/staging/video/xylon/Kconfig"
+
 source "drivers/staging/apf/Kconfig"
 
 source "drivers/staging/pmods/Kconfig"

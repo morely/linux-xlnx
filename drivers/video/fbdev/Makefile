@@ -6,7 +6,6 @@
 
 obj-y				+= core/
 
-obj-$(CONFIG_FB_XYLON)     += xylon/
 obj-$(CONFIG_EXYNOS_VIDEO)     += exynos/
 
 obj-$(CONFIG_FB_MACMODES)      += macmodes.o
