@@ -438,18 +438,18 @@ static int sii902x_probe(struct i2c_client *client,
 	dev_dbg(&sii902x.client->dev, "%s\n", __func__);;
 
 	/* Recommend to reset sii902x here, not yet implemented */
-	
+
 	/* Set 902x in hardware TPI mode on and jump out of D3 state */
 	if (i2c_smbus_write_byte_data(sii902x.client, 0xc7, 0x00) < 0) {
 		dev_err(&sii902x.client->dev,
-			"Sii902x: cound not find device\n");
+			"Sii902x: set TPI mode error!\n");
 		return -ENODEV;
 	}
 
 	/* read device ID */
 	for (i = 10; i > 0; i--) {
 		dat = i2c_smbus_read_byte_data(sii902x.client, 0x1B);
-		printk(KERN_DEBUG "Sii902x: read id = 0x%02X", dat);
+		printk(KERN_INFO "Sii902x: read id = 0x%02X", dat);
 		if (dat == 0xb0) {
 			dat = i2c_smbus_read_byte_data(sii902x.client, 0x1C);
 			printk(KERN_DEBUG "-0x%02X", dat);
@@ -462,7 +462,7 @@ static int sii902x_probe(struct i2c_client *client,
 	}
 	if (i == 0) {
 		dev_err(&sii902x.client->dev,
-			"Sii902x: cound not find device\n");
+			"Sii902x: read device id error!\n");
 		return -ENODEV;
 	}
 
@@ -474,7 +474,7 @@ static int sii902x_probe(struct i2c_client *client,
 #else
 	sii902x.edid_cfg.hdmi_cap = 1;
 #endif
-		
+
 	if (sii902x.client->irq) {
 		ret = request_irq(sii902x.client->irq, sii902x_detect_handler,
 				/*IRQF_TRIGGER_FALLING*/IRQF_TRIGGER_RISING,
@@ -506,6 +506,7 @@ static int sii902x_probe(struct i2c_client *client,
 	myir_get_of_property();
 	sii902x.waiting_for_fb = true;
 	fb_register_client(&nb);
+	printk(KERN_DEBUG"Sii902x: registed success!!\n");
 
 	return 0;
 }
@@ -514,11 +515,11 @@ static int sii902x_remove(struct i2c_client *client)
 {
 	fb_unregister_client(&nb);
 	sii902x_poweroff();
-	
+
 	device_remove_file(&client->dev, &dev_attr_fb_name);
 	device_remove_file(&client->dev, &dev_attr_cable_state);
 	device_remove_file(&client->dev, &dev_attr_edid);
-	
+
 	return 0;
 }
 

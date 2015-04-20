@@ -84,7 +84,7 @@
 &usb0 {
 	status = "okay";
 	dr_mode = "otg";
-	/*phy_type = "ulpi";*/
+	phy_type = "ulpi";
 };
 
 

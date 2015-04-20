@@ -53,5 +53,6 @@ obj-$(CONFIG_CRYPTO_SKEIN)	+= skein/
 obj-$(CONFIG_UNISYSSPAR)	+= unisys/
 obj-$(CONFIG_XILINX_VIDEO_IP)	+= video/axivdma/
 obj-$(CONFIG_MYIR_SII902X)	+= video/sii902x/
+obj-$(CONFIG_FB_XYLON)	+= video/xylon/
 obj-$(CONFIG_XILINX_APF)	+= apf/
 obj-$(CONFIG_PMODS)		+= pmods/
