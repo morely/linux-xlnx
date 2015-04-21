@@ -135,20 +135,30 @@
 	status  = "okay";
     bus-id = <0x0>;
     i2c-clk = <400000>;
-    
+   /* 
     tsc2007@49 {
             compatible = "ti,tsc2007";
             reg = <0x49>;
             interrupt-parent = <&intc>;
-            interrupts = <0 30 4>;
+            interrupts = <0 31 4>;
             gpios = <&gpio0 55 0>;
             ti,x-plate-ohms = <180>;
     };
-    
+    */
     realtimer@68 {
             compatible = "ds3231";
              reg= <0x68>;
-     }; 
+     };
+
+    sii902x@3b {
+        compatible = "sii902x";
+        reg = <0x3b>;
+        interrupt-parent = <&intc>;
+        interrupts = < 0 29 4 >;
+        mode_str = "1920x1080";
+        bits-per-pixel = <16>;
+    };
+ 
 
 };
 
@@ -193,6 +203,6 @@
              }; 
       }; 
   
-/* /include/ "mys-xc7z010-pl.dtsi"
-*/
+ /include/ "myd-xc7z010-kit-pl.dtsi"
+
 };
