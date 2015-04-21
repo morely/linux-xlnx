@@ -128,7 +128,7 @@
 
 &i2c0 {
 	status = "okay";
-//    bus-id = <0x0>;
+    bus-id = <0x0>;
     clock-frequency = <400000>;
     xlnx,has-interrupt = <0x1>;
 
@@ -203,7 +203,7 @@
         compatible = "gpio-keys";
         #address-cells = <1>;
         #size-cells = <0>;
-        //autorepeat;
+        autorepeat;
 
         user-key {
             lable = "user-key1";
@@ -211,9 +211,9 @@
             debounce-interval= <50>;
             linux,code = <108>;
             gpio-key,wakeup;
-           // autorepeat;
+            autorepeat;
         };
-/*  Switches
+/*  Switches*/
         sw1 {
             label = "sw1";
             gpios = <&gpio0 110 1>;
@@ -231,17 +231,17 @@
         sw3 {
             label = "sw3";
             gpios = <&gpio0 112 1>;
-            linux,code = <104>;
+            linux,code = <105>;
             gpio-key,wakeup;
             autorepeat;
         };
         sw4 {
             label = "sw4";
             gpios = <&gpio0 113 1>;
-            linux,code = <105>;
+            linux,code = <106>;
             gpio-key,wakeup;
             autorepeat;
-        }; */
+        };
     };
 
 /include/ "xylon-display.dtsi"
