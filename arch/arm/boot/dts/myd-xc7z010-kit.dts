@@ -31,7 +31,7 @@
 	};
 
 	chosen {
-		bootargs = "console=ttyPS0,115200 root=/dev/ram rw earlyprintk";
+		bootargs = "console=ttyPS0,115200 root=/dev/ram rw maxcpus=1 earlyprintk";
 		linux,stdout-path = "/amba/serial@e0001000";
 	};
 };
@@ -84,7 +84,7 @@
 &usb0 {
 	status = "okay";
 	dr_mode = "host";
-	/*phy_type = "ulpi";*/
+	phy_type = "ulpi";
 };
 
 
@@ -113,10 +113,10 @@
 };
 
 &sdhci1 {
-/*	status = "okay";
-    /*xlnx,has-cd = <0x0>;
+	status = "okay";
+    xlnx,has-cd = <0x0>;
     xlnx,has-power = <0x0>;
-    xlnx,has-wp = <0x0>;*/
+    xlnx,has-wp = <0x0>;
 };
 &uart0 {
 	status = "okay";
@@ -135,16 +135,16 @@
 	status  = "okay";
     bus-id = <0x0>;
     i2c-clk = <400000>;
-   /* 
+    
     tsc2007@49 {
             compatible = "ti,tsc2007";
             reg = <0x49>;
             interrupt-parent = <&intc>;
-            interrupts = <0 31 4>;
+            interrupts = <0 33 4>;
             gpios = <&gpio0 55 0>;
             ti,x-plate-ohms = <180>;
     };
-    */
+    
     realtimer@68 {
             compatible = "ds3231";
              reg= <0x68>;

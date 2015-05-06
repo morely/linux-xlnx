@@ -1,3 +1,12 @@
+        axi_iic_0: axi-iic@41600000 {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            compatible = "xlnx,xps-iic-2.00.a";
+            interrupt-parent = <&intc>;
+            interrupts = <0 35 4>;
+            reg = <0x41600000 0x10000>;
+        } ;
+
         logiclk_0: logiclk@43c00000 {
             compatible = "xylon,logiclk-1.02.b";
             status = "okay";
@@ -57,7 +66,7 @@
             xlnx,buffer-2-offset = <0x438>;
             xlnx,buffer-3-offset = <0x438>;
             xlnx,buffer-4-offset = <0x438>;
-            xlnx,display-color-space = <0x0>;
+            xlnx,display-color-space = <0x0>;/*mitch 0 for rgb; 1 for yuv*/
             xlnx,display-interface = <0x0>;
             xlnx,dvi-clk-mode = <0x0>;
             xlnx,e-data-width = <0x18>;
@@ -112,11 +121,13 @@
             xlnx,splb-mid-width = <0x1>;
             xlnx,splb-native-dwidth = <0x20>;
             xlnx,splb-num-masters = <0x2>;
+            xlnx,use-background =<0x01>;
             xlnx,use-e-parallel-input = <0x0>;
             xlnx,use-e-vclk-bufgmux = <0x0>;
             xlnx,use-multiplier = <0x2>;
-            xlnx,vmem-baseaddr = <0x30000000>;
-            xlnx,vmem-highaddr = <0x3fffffff>;
+            xlnx,use-size-position =<0x01>;
+            xlnx,vmem-baseaddr = <0x18000000>;
+            xlnx,vmem-highaddr = <0x1fffffff>;
             pixel-clock-source = <2>;
             pixel-data-invert = <0>;
             pixel-clock-active-high = <0>;
@@ -128,10 +139,9 @@
             xlnx,vmem-interface = <0x2>;
             xlnx,xcolor = <0x0>;
             xlnx,xmb-data-bus-width = <0x40>;
-            xlnx,use-background = <0x1>;
-            xlnx,use-size-position = <0x1>;
             active-layer = <0x1>;
-            videomode = "1280x720";
+            videomode = "800x480_TM050RBH01";
+            videomode1 = "800x480_LQ070Y3LG4A";
             edid {
                 preffered-videomode = <0x1>;
                  display-data = <0x1>;
@@ -241,6 +251,6 @@
             vsync-len = <5>;
             sync = <0>;
             vmode = <0>;
-        };
+        }; 
     };
 } ;
