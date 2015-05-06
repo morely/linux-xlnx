@@ -166,9 +166,13 @@ static void sii902x_setup(struct fb_info *fbi)
 	/* input bus/pixel: full pixel wide (24bit), rising edge */
 	i2c_smbus_write_byte_data(sii902x.client, 0x08, 0x70);
 	/* Set input format to RGB */
-	i2c_smbus_write_byte_data(sii902x.client, 0x09, 0x00);
+	//i2c_smbus_write_byte_data(sii902x.client, 0x09, 0x00);
+	/* Set input format to YCrCb */
+	i2c_smbus_write_byte_data(sii902x.client, 0x09, 0x02);
 	/* set output format to RGB */
 	i2c_smbus_write_byte_data(sii902x.client, 0x0A, 0x00);
+	/* set YC INPUT format select */
+	//i2c_smbus_write_byte_data(sii902x.client, 0x0B, 0x80);
 	/* audio setup */
 	i2c_smbus_write_byte_data(sii902x.client, 0x25, 0x00);
 	i2c_smbus_write_byte_data(sii902x.client, 0x26, 0x40);
