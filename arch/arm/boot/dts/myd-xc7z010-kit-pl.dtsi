@@ -3,7 +3,7 @@
             #size-cells = <0>;
             compatible = "xlnx,xps-iic-2.00.a";
             interrupt-parent = <&intc>;
-            interrupts = <0 35 4>;
+            interrupts = <0 34 4>;
             reg = <0x41600000 0x10000>;
         } ;
 

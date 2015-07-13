@@ -1053,8 +1053,14 @@ static int edt_ft5x06_ts_probe(struct i2c_client *client,
 
 	error = devm_request_threaded_irq(&client->dev, client->irq, NULL,
 					edt_ft5x06_ts_isr,
+					IRQF_TRIGGER_NONE | IRQF_ONESHOT,
+					client->name, tsdata);//mitch modify flags
+	/*
+	error = devm_request_threaded_irq(&client->dev, client->irq, NULL,
+					edt_ft5x06_ts_isr,
 					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
 					client->name, tsdata);
+	*/
 	if (error) {
 		dev_err(&client->dev, "Unable to request touchscreen IRQ.\n");
 		return error;
